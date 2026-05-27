@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 480" preserveAspectRatio="xMidYMid slice">
+  
+  <defs>
+    <filter id="duskBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="90"></feGaussianBlur>
+    </filter>
+    <radialGradient id="du-violet"><stop offset="0%" stop-color="#7A5BFF" stop-opacity="0.95"></stop><stop offset="100%" stop-color="#7A5BFF" stop-opacity="0"></stop></radialGradient>
+    <radialGradient id="du-deep"><stop offset="0%" stop-color="#1B36CC" stop-opacity="0.9"></stop><stop offset="100%" stop-color="#1B36CC" stop-opacity="0"></stop></radialGradient>
+    <radialGradient id="du-cobalt"><stop offset="0%" stop-color="#2547FF" stop-opacity="0.85"></stop><stop offset="100%" stop-color="#2547FF" stop-opacity="0"></stop></radialGradient>
+    <radialGradient id="du-violet-s"><stop offset="0%" stop-color="#B6A4FF" stop-opacity="0.7"></stop><stop offset="100%" stop-color="#B6A4FF" stop-opacity="0"></stop></radialGradient>
+  </defs>
+  <rect width="1600" height="480" fill="#FFFFFF"></rect>
+  <g filter="url(#duskBlur)">
+    <ellipse cx="180" cy="200" rx="340" ry="260" fill="url(#du-violet)"></ellipse>
+    <ellipse cx="520" cy="280" rx="360" ry="240" fill="url(#du-deep)"></ellipse>
+    <ellipse cx="860" cy="180" rx="340" ry="240" fill="url(#du-cobalt)"></ellipse>
+    <ellipse cx="1180" cy="260" rx="340" ry="240" fill="url(#du-violet)"></ellipse>
+    <ellipse cx="1460" cy="220" rx="300" ry="260" fill="url(#du-violet-s)"></ellipse>
+  </g>
+</svg>

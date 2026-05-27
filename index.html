@@ -3,780 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AITECHUB — Engenharia Agêntica Corporativa</title>
-<meta name="description" content="Pavimentamos o caminho do novo modelo de desenvolvimento agêntico para grandes empresas — multiplicando o throughput de entrega sem abrir mão de arquitetura, governança e conformidade regulatória.">
-<meta property="og:title" content="O modelo de desenvolvimento mudou. A AITECHUB pavimenta o caminho.">
-<meta property="og:description" content="Engenharia agêntica governada para grandes empresas.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --indigo: #533afd;
-    --indigo-deep: #4434d4;
-    --indigo-press: #2e2b8c;
-    --indigo-soft: #665efd;
-    --navy: #0d253d;
-    --navy-900: #1c1e54;
-    --ink-secondary: #273951;
-    --ink-mute: #64748d;
-    --canvas: #ffffff;
-    --canvas-soft: #f6f9fc;
-    --canvas-cream: #f5e9d4;
-    --hairline: #e3e8ee;
-    --ruby: #ea2261;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--canvas);
-    color: var(--navy);
-    font-family: 'Inter', -apple-system, sans-serif;
-    font-feature-settings: "ss01";
-    font-weight: 300;
-    font-size: 17px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  a { color: inherit; text-decoration: none; }
-
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
-
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--indigo-deep);
-  }
-  .eyebrow.on-dark { color: var(--indigo-soft); }
-
-  h2.stitle {
-    font-weight: 300;
-    font-size: clamp(28px, 3.5vw, 43px);
-    line-height: 1.16;
-    letter-spacing: -0.03em;
-    margin-top: 15px;
-    max-width: 21ch;
-  }
-  h2.stitle.wide { max-width: 28ch; }
-
-  .lead {
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--ink-mute);
-    max-width: 62ch;
-    margin-top: 20px;
-    font-weight: 300;
-  }
-  .num { font-feature-settings: "tnum", "ss01"; }
-
-  /* ---------- BUTTONS ---------- */
-  .btn {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 13px 24px;
-    border-radius: 9999px;
-    cursor: pointer;
-    border: none;
-    transition: transform 0.16s ease, background 0.2s ease, color 0.2s ease;
-    white-space: nowrap;
-  }
-  .btn-primary { background: var(--indigo); color: #fff; }
-  .btn-primary:hover { background: var(--indigo-press); transform: translateY(-2px); }
-  .btn-secondary {
-    background: var(--canvas);
-    color: var(--indigo);
-    border: 1px solid var(--indigo);
-  }
-  .btn-secondary:hover { background: var(--indigo); color: #fff; transform: translateY(-2px); }
-  .btn-large { font-size: 16px; padding: 15px 30px; }
-  .btn-link {
-    font-weight: 400;
-    font-size: 15px;
-    color: var(--indigo);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-  }
-  .btn-link:hover { border-color: var(--indigo); }
-  .btn-on-dark { background: var(--canvas); color: var(--navy-900); }
-  .btn-on-dark:hover { background: var(--indigo); color: #fff; transform: translateY(-2px); }
-
-  /* ---------- NAV ---------- */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 0;
-    transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
-  }
-  nav.scrolled {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 1px 0 var(--hairline);
-    padding: 12px 0;
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-  .logo {
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: -0.04em;
-    color: var(--navy);
-  }
-  .logo .ai { color: var(--indigo); }
-  .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a.navlink {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--ink-mute);
-    transition: color 0.2s;
-  }
-  .nav-links a.navlink:hover { color: var(--navy); }
-  @media (max-width: 860px) { .nav-links .navlink { display: none; } }
-
-  /* ---------- HERO ---------- */
-  .hero {
-    position: relative;
-    padding: 175px 0 90px;
-    overflow: hidden;
-  }
-  .hero-mesh {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 560px;
-    z-index: 0;
-    background:
-      radial-gradient(ellipse 36% 58% at 6% 20%, rgba(245,233,212,0.92), transparent 70%),
-      radial-gradient(ellipse 42% 62% at 30% 8%, rgba(249,107,238,0.42), transparent 66%),
-      radial-gradient(ellipse 48% 70% at 56% 26%, rgba(83,58,253,0.40), transparent 66%),
-      radial-gradient(ellipse 38% 56% at 82% 12%, rgba(234,34,97,0.34), transparent 64%),
-      radial-gradient(ellipse 54% 60% at 102% 52%, rgba(102,94,253,0.32), transparent 70%),
-      radial-gradient(ellipse 42% 50% at 70% 64%, rgba(255,209,140,0.28), transparent 66%);
-    filter: saturate(1.05);
-  }
-  .hero-mesh::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 200px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), var(--canvas));
-  }
-  .hero-inner { position: relative; z-index: 2; }
-  .hero h1 {
-    font-weight: 300;
-    font-size: clamp(30px, 4.3vw, 52px);
-    line-height: 1.16;
-    letter-spacing: -0.035em;
-    margin-top: 20px;
-    max-width: 21ch;
-  }
-  .hero h1 b { font-weight: 500; color: var(--indigo); }
-  .hero .sub {
-    font-size: clamp(16px, 1.65vw, 20px);
-    line-height: 1.56;
-    color: var(--ink-secondary);
-    max-width: 56ch;
-    margin-top: 22px;
-    font-weight: 300;
-  }
-  .hero .cta-row {
-    margin-top: 32px;
-    display: flex;
-    gap: 14px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .hero .microcopy {
-    margin-top: 16px;
-    font-size: 13.5px;
-    color: var(--ink-mute);
-  }
-
-  /* ---------- QUOTE BAND ---------- */
-  .quoteband { padding: 12px 0 80px; position: relative; z-index: 2; }
-  .quote-card {
-    background: var(--canvas);
-    border: 1px solid var(--hairline);
-    border-left: 3px solid var(--indigo);
-    border-radius: 0 14px 14px 0;
-    padding: 34px 40px;
-    box-shadow: 0 8px 24px rgba(0,55,112,0.06), 0 2px 6px rgba(0,55,112,0.04);
-  }
-  .quote-card p {
-    font-size: clamp(17px, 1.9vw, 23px);
-    line-height: 1.5;
-    color: var(--navy);
-    font-weight: 300;
-    letter-spacing: -0.015em;
-  }
-  .quote-card cite {
-    display: block;
-    margin-top: 18px;
-    font-style: normal;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--indigo-deep);
-  }
-
-  /* ---------- SECTION SHELL ---------- */
-  section { position: relative; }
-  .sec-pad { padding: 96px 0; }
-  .dark { background: var(--navy-900); color: #fff; }
-  .dark h2.stitle { color: #fff; }
-  .dark .lead { color: #aab4cc; }
-  .soft { background: var(--canvas-soft); }
-
-  /* ---------- PROBLEM ---------- */
-  .problem-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 52px;
-  }
-  .pcard {
-    background: var(--canvas);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 30px 28px;
-    box-shadow: 0 1px 3px rgba(0,55,112,0.05);
-  }
-  .pcard .pc-tag {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--indigo);
-  }
-  .pcard h3 {
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 1.25;
-    letter-spacing: -0.022em;
-    margin: 13px 0 12px;
-  }
-  .pcard p { font-size: 15px; line-height: 1.6; color: var(--ink-mute); }
-  .transition-line {
-    margin-top: 44px;
-    font-size: clamp(19px, 2.1vw, 26px);
-    font-weight: 300;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
-    color: var(--navy);
-    max-width: 26ch;
-  }
-  .transition-line b { font-weight: 500; color: var(--indigo); }
-
-  /* ---------- TURN ---------- */
-  .turn { padding: 110px 0; }
-  .turn p {
-    font-weight: 300;
-    font-size: clamp(23px, 2.9vw, 37px);
-    line-height: 1.36;
-    letter-spacing: -0.025em;
-    max-width: 25ch;
-  }
-  .turn p b { font-weight: 500; color: var(--indigo-soft); }
-
-  /* ---------- PILLARS ---------- */
-  .twolead { margin-top: 22px; max-width: 64ch; }
-  .twolead p { font-size: 18px; line-height: 1.6; color: var(--ink-mute); font-weight: 300; }
-  .twolead p + p { margin-top: 14px; }
-  .twolead b { color: var(--navy); font-weight: 500; }
-  .pillars {
-    margin-top: 52px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .pillar {
-    background: var(--canvas);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 32px 28px;
-    box-shadow: 0 1px 3px rgba(0,55,112,0.05);
-  }
-  .pillar .pl-num {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--indigo);
-    letter-spacing: 0.06em;
-    font-feature-settings: "tnum";
-  }
-  .pillar h3 {
-    font-weight: 500;
-    font-size: 23px;
-    letter-spacing: -0.025em;
-    margin: 14px 0 12px;
-  }
-  .pillar p { font-size: 15px; line-height: 1.62; color: var(--ink-mute); }
-  .pl-attacks { margin-top: 16px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-  .pl-attacks .pl-label {
-    font-size: 10.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    font-weight: 600;
-    margin-right: 4px;
-  }
-  .dtag {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    padding: 3px 10px;
-    border-radius: 9999px;
-    font-feature-settings: "tnum";
-    line-height: 1.4;
-  }
-  .dtag.primary { background: var(--indigo); color: #fff; }
-  .dtag.secondary { background: transparent; color: var(--indigo); border: 1px solid var(--indigo); }
-
-  /* ---------- THREE PAINS (nova seção) ---------- */
-  .pains-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 52px;
-  }
-  .dcard {
-    background: var(--canvas);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: 30px 28px 28px;
-    box-shadow: 0 1px 3px rgba(0,55,112,0.05);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .dcard::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 5px; height: 100%;
-    background: var(--indigo);
-  }
-  .dcard .d-id {
-    font-weight: 300;
-    font-size: 52px;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    color: var(--indigo);
-    font-feature-settings: "tnum";
-  }
-  .dcard .d-id b { font-weight: 500; }
-  .dcard h3 {
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
-    margin: 10px 0 18px;
-    color: var(--navy);
-  }
-  .dcard .d-symptoms {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .dcard .d-symptoms li {
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--ink-mute);
-    padding: 10px 0 10px 18px;
-    position: relative;
-    border-top: 1px solid var(--hairline);
-    font-style: italic;
-  }
-  .dcard .d-symptoms li:first-child { border-top: none; padding-top: 0; }
-  .dcard .d-symptoms li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 19px;
-    width: 9px; height: 1px;
-    background: var(--indigo);
-  }
-  .dcard .d-symptoms li:first-child::before { top: 10px; }
-  .dcard .d-why {
-    margin-top: auto;
-    padding-top: 18px;
-    border-top: 1px solid var(--hairline);
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--navy);
-    font-weight: 400;
-  }
-  .dcard .d-why b { font-weight: 600; color: var(--indigo); }
-  .pains-closer {
-    margin-top: 44px;
-    font-size: clamp(19px, 2.1vw, 26px);
-    font-weight: 300;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
-    color: var(--navy);
-    max-width: 40ch;
-  }
-  .pains-closer b { font-weight: 500; color: var(--indigo); }
-
-  /* ---------- TIMELINE ---------- */
-  .timeline { margin-top: 56px; }
-  .tl-row {
-    display: grid;
-    grid-template-columns: 190px 1fr 1fr;
-    gap: 38px;
-    padding: 34px 0;
-    border-top: 1px solid rgba(255,255,255,0.14);
-    align-items: start;
-  }
-  .tl-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.14); }
-  .tl-tag {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--indigo-soft);
-    padding-top: 5px;
-  }
-  .tl-main h3 {
-    font-weight: 400;
-    font-size: 26px;
-    letter-spacing: -0.025em;
-    color: #fff;
-  }
-  .tl-main p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #aab4cc;
-    margin-top: 11px;
-    font-weight: 300;
-  }
-  .tl-deliv {
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: #fff;
-    font-weight: 300;
-    padding-top: 3px;
-  }
-  .tl-deliv .dl-label {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: #8d97b3;
-    margin-bottom: 7px;
-    font-weight: 600;
-  }
-  .tl-foot {
-    margin-top: 34px;
-    font-size: 15px;
-    color: #aab4cc;
-    font-weight: 300;
-  }
-
-  /* ---------- RESULTS ---------- */
-  .metrics {
-    margin-top: 54px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-  .metric { border-top: 2px solid var(--indigo); padding-top: 18px; }
-  .metric .m-num {
-    font-weight: 300;
-    font-size: clamp(30px, 3vw, 39px);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--indigo);
-    font-feature-settings: "tnum", "ss01";
-  }
-  .metric .m-num b { color: var(--navy); font-weight: 400; }
-  .metric .m-lbl {
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: var(--ink-mute);
-    margin-top: 13px;
-  }
-  .metrics-foot {
-    margin-top: 32px;
-    font-size: 14.5px;
-    color: var(--ink-mute);
-    font-weight: 300;
-  }
-
-  /* ---------- COMPARISON ---------- */
-  .compare {
-    margin-top: 52px;
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  .crow {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr 1.1fr;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .crow:last-child { border-bottom: none; }
-  .ccell {
-    padding: 16px 18px;
-    font-size: 13.5px;
-    line-height: 1.4;
-    border-right: 1px solid var(--hairline);
-  }
-  .ccell:last-child { border-right: none; }
-  .crow.head .ccell {
-    font-weight: 600;
-    font-size: 11.5px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    background: var(--canvas-soft);
-  }
-  .crow .ccell.rowlabel { font-weight: 500; color: var(--navy); }
-  .crow .ccell.aitechub { background: var(--navy-900); color: #fff; font-weight: 400; }
-  .crow.head .ccell.aitechub { background: var(--indigo); color: #fff; }
-  .compare-foot {
-    margin-top: 28px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--ink-mute);
-    max-width: 66ch;
-    font-weight: 300;
-  }
-
-  /* ---------- WHO ---------- */
-  .who-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 56px;
-    align-items: start;
-    margin-top: 16px;
-  }
-  .who-text p { color: #aab4cc; margin-top: 18px; font-size: 16px; line-height: 1.62; font-weight: 300; }
-  .who-text p b { color: #fff; font-weight: 500; }
-  .pullquote {
-    border-left: 3px solid var(--indigo-soft);
-    padding: 4px 0 4px 28px;
-  }
-  .pullquote p {
-    font-weight: 300;
-    font-size: 21px;
-    line-height: 1.45;
-    letter-spacing: -0.02em;
-    color: #fff;
-  }
-
-  /* ---------- FAQ ---------- */
-  .faq { margin-top: 50px; max-width: 860px; }
-  .faq-item { border-bottom: 1px solid var(--hairline); }
-  .faq-q {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 24px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: -0.02em;
-    color: var(--navy);
-  }
-  .faq-icon { flex-shrink: 0; width: 22px; height: 22px; position: relative; }
-  .faq-icon::before, .faq-icon::after {
-    content: "";
-    position: absolute;
-    background: var(--indigo);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .faq-icon::before { width: 22px; height: 2px; top: 10px; left: 0; }
-  .faq-icon::after { width: 2px; height: 22px; top: 0; left: 10px; }
-  .faq-item.open .faq-icon::after { transform: rotate(90deg); opacity: 0; }
-  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-  .faq-a-inner {
-    padding: 0 44px 26px 0;
-    font-size: 15.5px;
-    line-height: 1.62;
-    color: var(--ink-mute);
-    font-weight: 300;
-  }
-
-  /* ---------- FINAL CTA ---------- */
-  .final-cta { padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
-  .final-mesh {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background:
-      radial-gradient(ellipse 40% 70% at 20% 30%, rgba(83,58,253,0.13), transparent 70%),
-      radial-gradient(ellipse 44% 66% at 80% 60%, rgba(249,107,238,0.12), transparent 68%),
-      radial-gradient(ellipse 40% 50% at 55% 90%, rgba(255,209,140,0.12), transparent 66%);
-  }
-  .final-inner { position: relative; z-index: 2; }
-  .final-cta h2 {
-    font-weight: 300;
-    font-size: clamp(30px, 4vw, 50px);
-    line-height: 1.14;
-    letter-spacing: -0.035em;
-    max-width: 20ch;
-    margin: 14px auto 0;
-  }
-  .final-cta .fc-text {
-    font-size: 18px;
-    line-height: 1.58;
-    color: var(--ink-mute);
-    max-width: 58ch;
-    margin: 22px auto 0;
-    font-weight: 300;
-  }
-  .final-cta .cta-row {
-    margin-top: 36px;
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .final-cta .microcopy { margin-top: 20px; font-size: 13.5px; color: var(--ink-mute); }
-
-  /* ---------- FOOTER ---------- */
-  footer {
-    background: var(--navy-900);
-    color: #8d97b3;
-    padding: 64px 0 34px;
-  }
-  .foot-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-  }
-  .foot-logo {
-    font-weight: 600;
-    font-size: 24px;
-    color: #fff;
-    letter-spacing: -0.04em;
-  }
-  .foot-logo .ai { color: var(--indigo-soft); }
-  .foot-tag { margin-top: 12px; font-size: 14px; max-width: 32ch; font-weight: 300; }
-  .foot-col .ftitle {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--indigo-soft);
-    font-weight: 600;
-    margin-bottom: 13px;
-  }
-  .foot-col a, .foot-col p {
-    font-size: 14px;
-    line-height: 1.95;
-    display: block;
-    color: #8d97b3;
-    font-weight: 300;
-  }
-  .foot-col a:hover { color: #fff; }
-  .foot-legal {
-    margin-top: 24px;
-    font-size: 12px;
-    color: #6b7691;
-    letter-spacing: 0.03em;
-  }
-
-  /* ---------- REVEAL ---------- */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(.2,.6,.2,1), transform 0.7s cubic-bezier(.2,.6,.2,1);
-  }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 920px) {
-    .wrap { padding: 0 24px; }
-    .problem-cards, .pillars, .metrics, .pains-grid { grid-template-columns: 1fr; gap: 18px; }
-    .tl-row { grid-template-columns: 1fr; gap: 12px; }
-    .who-grid { grid-template-columns: 1fr; gap: 36px; }
-    .compare { overflow-x: auto; }
-    .crow { grid-template-columns: 1.4fr 1fr 1fr 1fr 1.1fr; min-width: 720px; }
-    .foot-grid { grid-template-columns: 1fr; gap: 28px; }
-    .hero { padding: 130px 0 60px; }
-    .sec-pad, .turn, .final-cta { padding: 72px 0; }
-    .quote-card { padding: 26px 26px; }
-  }
-</style>
+<title>AITECHUB — Engenharia agêntica para grandes empresas reguladas</title>
+<meta name="description" content="Instalamos o modelo de desenvolvimento agêntico em grandes empresas reguladas — mais velocidade de entrega preservando arquitetura, governança, segurança e conformidade.">
+<meta property="og:title" content="O modelo de desenvolvimento mudou. A AITECHUB instala o novo.">
+<meta property="og:description" content="Engenharia agêntica governada para grandes empresas reguladas.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="styles/aitechub.css">
 </head>
 <body>
 
 <!-- ============ NAV ============ -->
-<nav id="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="logo"><span class="ai">AI</span>TECHUB</a>
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Principal">
+    <a href="index.html" class="nav-wm" aria-label="AITECHUB">
+      <img class="mark" src="assets/logo-mark.svg" alt="">
+      <span><span class="ai">AI</span>TECHUB</span>
+    </a>
     <div class="nav-links">
-      <a href="#problema" class="navlink">O problema</a>
-      <a href="#fazemos" class="navlink">O que fazemos</a>
-      <a href="#funciona" class="navlink">Como funciona</a>
-      <a href="#quem" class="navlink">Quem somos</a>
-      <a href="#contato" class="btn btn-primary">Agendar conversa</a>
+      <a href="#problema">O problema</a>
+      <a href="#fazemos">O método</a>
+      <a href="#funciona">Como funciona</a>
+      <a href="sobre.html">Sobre</a>
     </div>
-  </div>
-</nav>
+    <div class="nav-spacer"></div>
+    <a href="#contato" class="btn btn-cta">
+      <span class="btn-cta-dot" aria-hidden="true"></span>
+      Agendar conversa
+    </a>
+  </nav>
+</div>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <div class="hero-mesh"></div>
-  <div class="wrap hero-inner">
-    <div class="eyebrow reveal">Engenharia Agêntica Corporativa</div>
-    <h1 class="reveal">A AITECHUB pavimenta o caminho do novo modelo de desenvolvimento <b>agêntico</b> para grandes empresas.</h1>
-    <p class="sub reveal">Multiplicamos o throughput de entrega sem abrir mão de arquitetura, governança e conformidade regulatória. Instalamos a infraestrutura operacional e transferimos a capacidade para o seu time — para novos produtos e para o legado.</p>
-    <div class="cta-row reveal">
-      <a href="#contato" class="btn btn-primary btn-large">Agendar uma conversa de 45 minutos</a>
-      <a href="#contato" class="btn btn-secondary btn-large">Baixar o briefing executivo (PDF)</a>
+  <div class="hero-mesh" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="t-eyebrow with-dot reveal">Engenharia agêntica corporativa</div>
+    <h1 class="t-display-xl reveal">A AITECHUB instala o modelo de desenvolvimento <span class="accent">agêntico</span> em grandes empresas reguladas.</h1>
+    <p class="t-lead reveal">Aumentamos a velocidade de entrega da sua engenharia preservando arquitetura, governança, segurança e conformidade. Montamos a infraestrutura operacional, treinamos o seu time e saímos — para produtos novos e para o legado.</p>
+    <div class="hero-cta reveal">
+      <a href="#contato" class="btn btn-cta btn-cta-lg">
+        <span class="btn-cta-dot" aria-hidden="true"></span>
+        Agendar uma conversa de 45 minutos
+      </a>
+      <a href="#contato" class="btn btn-outline btn-lg">Baixar o briefing executivo (PDF)</a>
     </div>
-    <p class="microcopy reveal">Sem compromisso. A primeira conversa é sobre o domínio que mais trava sua entrega hoje.</p>
+    <p class="hero-microcopy reveal">Sem compromisso. A primeira conversa é sobre o domínio que mais trava sua entrega hoje.</p>
   </div>
 </header>
 
 <!-- ============ QUOTE BAND ============ -->
-<section class="quoteband">
+<section class="quote-band">
   <div class="wrap">
     <blockquote class="quote-card reveal">
       <p>"We have a major change, started about October 2025. If you're writing code in any traditional way, stop — it's over. If you manage a company and have software programmers, say: why are you still writing code the way you did it 6 months ago?"</p>
       <cite>Dr. Eric Schmidt — ex-CEO e chairman do Google</cite>
     </blockquote>
+    <blockquote class="quote-card reveal">
+      <p>"Vibe coding raises the floor, anyone can build software.  Agentic engineering preserves the professional quality bar while going faster; security, correctness, all still on you.  The ceiling for skilled operators is dramatically higher than "10x engineer"</p>
+      <cite>Andrej Karpathy, AI Researcher and Educator</cite>
+    </blockquote>
   </div>
 </section>
 
 <!-- ============ PROBLEMA ============ -->
-<section class="sec-pad soft" id="problema">
+<section class="band band-tint" id="problema">
   <div class="wrap">
-    <div class="eyebrow reveal">O Problema</div>
-    <h2 class="stitle wide reveal">O problema que o board já está cobrando.</h2>
-    <p class="lead reveal">O modelo de desenvolvimento mudou. As ferramentas de IA entraram nas equipes, o código começou a fluir mais rápido — mas o resultado de negócio não acompanhou na mesma proporção. Três frentes explicam o porquê.</p>
+    <div class="section-head">
+      <div class="t-eyebrow reveal">O problema</div>
+      <h2 class="t-display-lg reveal">O problema que o board já está cobrando.</h2>
+      <p class="t-lead reveal">O modelo de desenvolvimento mudou. As ferramentas de IA entraram nas equipes e o código passou a sair mais rápido — mas o resultado de negócio não veio junto. Três razões explicam o descompasso.</p>
+    </div>
 
-    <div class="problem-cards">
-      <div class="pcard reveal">
-        <div class="pc-tag">2024 – 2026</div>
+    <div class="grid-3">
+      <article class="card reveal">
+        <div class="card-eyebrow">2024 – 2026</div>
         <h3>O retorno ainda é marginal</h3>
-        <p>Os ganhos de produtividade prometidos com IA estão sendo cobrados agora. Embora o time relate aumento de produtividade, a geração de valor é marginal — o investimento em ferramentas e modelos ainda não foi completamente recuperado.</p>
-      </div>
-      <div class="pcard reveal">
-        <div class="pc-tag">Risco</div>
+        <p>Os ganhos de produtividade prometidos com IA estão sendo cobrados agora. O time relata mais código por dia, mas o impacto em receita, custo ou time-to-market do produto não apareceu — e o investimento em licenças e modelos não se pagou.</p>
+      </article>
+      <article class="card reveal">
+        <div class="card-eyebrow">Risco</div>
         <h3>Shadow AI e dívida cognitiva</h3>
         <p>Equipes adotam IA por conta própria e entregam produto "vibe coded" fora do padrão. Código gerado sem governança vira dívida cognitiva e exposição regulatória — problemas que só aparecem na auditoria, quando corrigir já é caro.</p>
-      </div>
-      <div class="pcard reveal">
-        <div class="pc-tag">Mercado</div>
+      </article>
+      <article class="card reveal">
+        <div class="card-eyebrow">Mercado</div>
         <h3>O modelo certo existe — falta aplicá-lo</h3>
-        <p>Nos últimos seis meses, o mercado consolidou modelos operacionais agênticos capazes de entregar ganhos de 5x a 10x. A questão deixou de ser "se" — passou a ser como aplicá-los, com método, para impactar o negócio.</p>
-      </div>
+        <p>Nos últimos seis meses, o mercado consolidou modelos operacionais agênticos com ganhos relatados de 5x a 10x no throughput de engenharia. Para grandes empresas, o que falta não é decidir se vão adotar — é como aplicar com método, sem quebrar arquitetura nem conformidade.</p>
+      </article>
     </div>
 
     <p class="transition-line reveal">A questão não é se a sua engenharia vai operar com agentes. É se ela vai operar <b>sob controle</b>.</p>
@@ -784,113 +97,119 @@
 </section>
 
 <!-- ============ A VIRADA ============ -->
-<section class="turn dark">
+<section class="turn band-ink">
   <div class="wrap">
-    <p class="reveal">Vibe coding funciona em projeto pessoal porque não há arquitetura a preservar, regulação a cumprir, nem operação crítica a proteger. Em um banco ou uma operadora, é o oposto. Engenharia agêntica em escala enterprise não é uma questão de prompt melhor — é uma questão de <b>infraestrutura e modelo operacional</b>. É isso que a AITECHUB instala.</p>
+    <p class="reveal">Vibe coding funciona em projeto pessoal — não há arquitetura a preservar, regulação a cumprir nem operação crítica a proteger. Num banco ou numa operadora, é o oposto. Em escala enterprise, engenharia agêntica não se resolve com prompt melhor: depende de <b>infraestrutura e modelo operacional</b>. É isso que a AITECHUB instala.</p>
   </div>
 </section>
 
 <!-- ============ AS TRÊS DORES ============ -->
-<section class="sec-pad" id="dores">
+<section class="band" id="dores">
   <div class="wrap">
-    <div class="eyebrow reveal">As Três Dores</div>
-    <h2 class="stitle wide reveal">As três dores entrelaçadas que ninguém ataca em conjunto.</h2>
-    <p class="lead reveal">Cada uma sozinha já é trabalho. Atacar uma sem as outras é gastar capital sem resultado de negócio visível. Por isso o método AITECHUB ataca as três juntas.</p>
+    <div class="section-head">
+      <div class="t-eyebrow reveal">As três dores</div>
+      <h2 class="t-display-lg reveal">As três dores que ninguém ataca em conjunto.</h2>
+      <p class="t-lead reveal">Cada uma sozinha já é trabalho. Atacar uma sem as outras é gastar capital sem mover o ponteiro do negócio. Por isso tratamos as três no mesmo engagement.</p>
+    </div>
 
-    <div class="pains-grid">
-      <div class="dcard reveal">
-        <div class="d-id"><b>D1</b></div>
+    <div class="grid-3">
+      <article class="pain-card reveal">
+        <span class="pain-id">D1</span>
         <h3>Operating Model gap</h3>
-        <ul class="d-symptoms">
+        <ul class="pain-symptoms">
           <li>"Compramos Cursor / Claude Code / Copilot, mas o ganho é marginal."</li>
           <li>"Cada squad está usando IA do jeito que entende — virou bagunça."</li>
           <li>"O time de negócios começou a gerar código fora do padrão e a TI não dá conta."</li>
           <li>"Já tentamos curso e workshop — virou hype individual, sem produto."</li>
         </ul>
-        <p class="d-why"><b>Por que dói.</b> Sem mudança de operating model, IA vira autocomplete melhorado. O CIO investe em ferramenta e o board cobra resultado que não aparece — porque a unidade de trabalho continua sendo a mesma.</p>
-      </div>
+        <p class="pain-why"><b>Por que dói.</b> Sem mudança de operating model, IA vira autocomplete melhorado. O CIO investe em ferramenta e o board cobra resultado que não aparece — porque a unidade de trabalho continua sendo a mesma.</p>
+      </article>
 
-      <div class="dcard reveal">
-        <div class="d-id"><b>D2</b></div>
+      <article class="pain-card reveal">
+        <span class="pain-id">D2</span>
         <h3>Harness gap</h3>
-        <ul class="d-symptoms">
+        <ul class="pain-symptoms">
           <li>"O agente erra do mesmo jeito o tempo todo — o time perdeu confiança."</li>
           <li>"A IA não conhece a nossa arquitetura corporativa."</li>
-          <li>"Tem 13+ frameworks no mercado e nenhum critério claro para escolher."</li>
+          <li>"Temos que avaliar mais de 15 frameworks no mercado antes de escolher melhor modelo."</li>
           <li>"O que sai do agente não passa em revisão sem retrabalho pesado."</li>
         </ul>
-        <p class="d-why"><b>Por que dói.</b> Sem harness customizado à Arquitetura de Referência da casa, o agente erra sistemicamente — sempre na mesma classe de problema. Confiança perdida é difícil de recuperar; o time desliga o agente em semanas.</p>
-      </div>
+        <p class="pain-why"><b>Por que dói.</b> Sem harness customizado à Arquitetura de Referência da casa, o agente erra sistemicamente — sempre na mesma classe de problema. Confiança perdida é difícil de recuperar; o time desliga o agente em semanas.</p>
+      </article>
 
-      <div class="dcard reveal">
-        <div class="d-id"><b>D3</b></div>
+      <article class="pain-card reveal">
+        <span class="pain-id">D3</span>
         <h3>Brownfield gap</h3>
-        <ul class="d-symptoms">
+        <ul class="pain-symptoms">
           <li>"Greenfield é fácil. O problema é o core que sustenta a receita."</li>
-          <li>"O projeto de modernização ficou &gt; R$ 1M e &gt; 6 meses — não aprovou."</li>
+          <li>"O projeto de modernização não foi aprovado porque ficou &gt; R$ 1M e &gt; 6 meses."</li>
           <li>"O legado tem baixa modularidade e cobertura de testes irregular."</li>
           <li>"Os devs sêniores resistem porque sentem ameaça ao papel."</li>
         </ul>
-        <p class="d-why"><b>Por que dói.</b> Codebases legados têm baixa harnessability — exatamente onde o agente é menos útil. E é onde está ~80% da receita do cliente. A IA fica restrita a projetos novos enquanto o core sangra.</p>
-      </div>
+        <p class="pain-why"><b>Por que dói.</b> Codebases legados têm baixa harnessability — exatamente onde o agente é menos útil. E é onde está ~80% da receita do cliente. A IA fica restrita a projetos novos enquanto o core sangra.</p>
+      </article>
     </div>
 
-    <p class="pains-closer reveal">Atacar <b>uma sem as outras</b> é gastar capital sem resultado. Atacar as três juntas é o método AITECHUB.</p>
+    <p class="pains-closer reveal">Tratar essas três dores em projetos separados, com fornecedores diferentes, é o caminho mais comum — e o mais caro. O método AITECHUB <b>resolve as três no mesmo engagement</b>.</p>
   </div>
 </section>
 
 <!-- ============ O QUE FAZEMOS ============ -->
-<section class="sec-pad" id="fazemos">
+<section class="band band-tint" id="fazemos">
   <div class="wrap">
-    <div class="eyebrow reveal">O Que Fazemos</div>
-    <h2 class="stitle wide reveal">Instalamos o novo modelo operacional. Para o que você vai construir — e para o que você já tem.</h2>
-    <div class="twolead reveal">
-      <p>Instalamos a infraestrutura operacional que faz a engenharia agêntica funcionar em ambiente regulado, e transferimos a capacidade para o seu time.</p>
-      <p>Além de preparar os times para acelerar o desenvolvimento <b>greenfield</b> — novos produtos, em conformidade com os padrões — preparamos o time para o cenário <b>brownfield</b>, adaptando os sistemas legados para operar no novo modelo agêntico.</p>
+    <div class="section-head">
+      <div class="t-eyebrow reveal">O método</div>
+      <h2 class="t-display-lg reveal">Instalamos o novo modelo operacional. Para o que você vai construir — e para o que você já tem.</h2>
+      <div class="twolead reveal">
+        <p>Montamos a infraestrutura operacional que faz a engenharia agêntica funcionar dentro de ambiente regulado, e treinamos o seu time para conduzir o modelo depois que saímos.</p>
+        <p>Preparamos o time tanto para o cenário <b>greenfield</b> — novos produtos, dentro dos padrões da casa — quanto para o <b>brownfield</b>, adaptando os sistemas legados para operar sob agentes sem perder controle.</p>
+      </div>
     </div>
 
-    <div class="pillars">
-      <div class="pillar reveal">
-        <div class="pl-num">01</div>
+    <div class="grid-3">
+      <article class="pillar reveal">
+        <div class="pillar-num">01</div>
         <h3>Setup</h3>
-        <p>Selecionamos as melhores práticas do mercado — skills e fluxos de engenharia agêntica — que melhor se adequam à sua organização, e customizamos o harness para refletir a sua Arquitetura de Referência. Você adota o estado da arte sem o custo de testar tudo.</p>
-        <div class="pl-attacks">
-          <span class="pl-label">Ataca</span>
+        <p>Mapeamos o que já está funcionando em engenharia agêntica — skills, fluxos, frameworks —, escolhemos o que serve à sua organização e customizamos o harness para a sua Arquitetura de Referência. Você adota o que já está validado sem pagar o custo de testar tudo.</p>
+        <div class="pillar-attacks">
+          <span class="label">Ataca</span>
           <span class="dtag primary">D2</span>
           <span class="dtag secondary">D1</span>
           <span class="dtag secondary">D3</span>
         </div>
-      </div>
-      <div class="pillar reveal">
-        <div class="pl-num">02</div>
+      </article>
+      <article class="pillar reveal">
+        <div class="pillar-num">02</div>
         <h3>AI Enabler</h3>
-        <p>Treinamos o seu time on-the-job para ganhar fluência no novo modelo de trabalho — atuando em backlog real de projetos, gerando resultados concretos desde as primeiras semanas. Capacidade que fica na casa.</p>
-        <div class="pl-attacks">
-          <span class="pl-label">Ataca</span>
+        <p>Treinamos o seu time no backlog real — não em sandbox. Os primeiros entregáveis saem nas primeiras semanas, e a fluência no novo modelo de trabalho fica no time depois que saímos.</p>
+        <div class="pillar-attacks">
+          <span class="label">Ataca</span>
           <span class="dtag primary">D1</span>
           <span class="dtag secondary">D2</span>
         </div>
-      </div>
-      <div class="pillar reveal">
-        <div class="pl-num">03</div>
+      </article>
+      <article class="pillar reveal">
+        <div class="pillar-num">03</div>
         <h3>Brownfield</h3>
-        <p>Apoiamos no planejamento de refactoring e modernização para preparar o legado para o novo modelo operacional, endereçando diretamente o problema de harnessability — o que torna, ou não, um codebase apto a ser operado por agentes.</p>
-        <div class="pl-attacks">
-          <span class="pl-label">Ataca</span>
+        <p>Planejamos o refactoring e a modernização que tornam o legado <em>harnessable</em> — apto a ser operado por agentes sem perda de controle. É onde está a maior parte da receita e onde a IA, sem preparo, mais quebra.</p>
+        <div class="pillar-attacks">
+          <span class="label">Ataca</span>
           <span class="dtag primary">D3</span>
           <span class="dtag secondary">D2</span>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- ============ COMO FUNCIONA ============ -->
-<section class="sec-pad dark" id="funciona">
-  <div class="wrap">
-    <div class="eyebrow on-dark reveal">Como Funciona</div>
-    <h2 class="stitle wide reveal">Do diagnóstico ao primeiro resultado mensurável em 90 dias.</h2>
-    <p class="lead reveal">O primeiro engagement é desenhado para provar valor rápido e transferir capacidade. Sem dependência permanente: ao final, o seu time opera sozinho.</p>
+<section class="band band-ink" id="funciona">
+  <div class="wrap on-ink">
+    <div class="section-head">
+      <div class="t-eyebrow on-ink reveal">Como funciona</div>
+      <h2 class="t-display-lg reveal">Do diagnóstico ao primeiro resultado mensurável em 90 dias.</h2>
+      <p class="t-lead reveal">O primeiro engagement é desenhado para mostrar resultado rápido e transferir capacidade. Sem dependência permanente: no fim, o seu time opera sozinho.</p>
+    </div>
 
     <div class="timeline">
       <div class="tl-row reveal">
@@ -900,7 +219,7 @@
           <p>Análise da maturidade do time de engenharia com IA, leitura estruturada de um codebase crítico, mapa de estado atual co-validado e harnessability score por módulo.</p>
         </div>
         <div class="tl-deliv">
-          <span class="dl-label">Entregável</span>
+          <span class="lbl">Entregável</span>
           Diagnóstico de maturidade, mapa de estado atual e score de baseline.
         </div>
       </div>
@@ -911,7 +230,7 @@
           <p>Processo de engenharia redefinido, skills instalados, target architecture co-desenhada, gap analysis e backlog de slices priorizado.</p>
         </div>
         <div class="tl-deliv">
-          <span class="dl-label">Entregável</span>
+          <span class="lbl">Entregável</span>
           Modelo operacional definido, harness instalado e backlog de transformação.
         </div>
       </div>
@@ -919,10 +238,10 @@
         <div class="tl-tag">Semanas 7 – 12</div>
         <div class="tl-main">
           <h3>Execução &amp; transferência</h3>
-          <p>O time AI Enabler é pareado com o seu squad para executar os primeiros slices de quick-win. Hand-off com dashboard de métricas e capacidade instalada.</p>
+          <p>O nosso time AI Enabler é pareado com o seu squad para executar os primeiros slices de quick-win. Hand-off com dashboard de métricas e capacidade instalada.</p>
         </div>
         <div class="tl-deliv">
-          <span class="dl-label">Entregável</span>
+          <span class="lbl">Entregável</span>
           Slices executados, dashboard de métricas e squads habilitadas.
         </div>
       </div>
@@ -932,39 +251,43 @@
 </section>
 
 <!-- ============ RESULTADOS ============ -->
-<section class="sec-pad" id="resultados">
+<section class="band" id="resultados">
   <div class="wrap">
-    <div class="eyebrow reveal">Resultados</div>
-    <h2 class="stitle wide reveal">Resultados que entram no board deck — não promessas de slide.</h2>
-    <p class="lead reveal">O novo modelo operacional só se sustenta se for medido. Estes são os resultados típicos de um primeiro engagement de 90 dias:</p>
+    <div class="section-head">
+      <div class="t-eyebrow reveal">Resultados</div>
+      <h2 class="t-display-lg reveal">Números que entram no board deck — não promessa de slide.</h2>
+      <p class="t-lead reveal">O novo modelo operacional só se sustenta se for medido. As faixas abaixo são o que costumamos ver em um primeiro engagement de 90 dias:</p>
+    </div>
 
-    <div class="metrics">
+    <div class="grid-4">
       <div class="metric reveal">
-        <div class="m-num">30 → 60%</div>
-        <div class="m-lbl">First-pass acceptance rate — PRs gerados por agentes aprovados sem retrabalho significativo.</div>
+        <div class="num">30 → 60<b>%</b></div>
+        <div class="lbl">First-pass acceptance rate — PRs gerados por agentes aprovados sem retrabalho significativo.</div>
       </div>
       <div class="metric reveal">
-        <div class="m-num">35 → 70%</div>
-        <div class="m-lbl">Agent autonomy — proporção do trabalho conduzida de forma autônoma pelos agentes.</div>
+        <div class="num">35 → 70<b>%</b></div>
+        <div class="lbl">Agent autonomy — proporção do trabalho conduzida de forma autônoma pelos agentes.</div>
       </div>
       <div class="metric reveal">
-        <div class="m-num">+45%</div>
-        <div class="m-lbl">Evolução do harnessability score do domínio piloto ao longo de 90 dias.</div>
+        <div class="num">+45<b>%</b></div>
+        <div class="lbl">Evolução do harnessability score do domínio piloto ao longo de 90 dias.</div>
       </div>
       <div class="metric reveal">
-        <div class="m-num">2</div>
-        <div class="m-lbl">Squads habilitadas com o novo modelo operacional — uma greenfield, outra brownfield.</div>
+        <div class="num">2</div>
+        <div class="lbl">Squads habilitadas com o novo modelo operacional — uma greenfield, outra brownfield.</div>
       </div>
     </div>
-    <p class="metrics-foot reveal">As faixas refletem a evolução típica observada em codebases de grande porte. O baseline real é medido no seu próprio ambiente, na primeira semana.</p>
+    <p class="metrics-foot reveal">As faixas refletem o que costumamos observar em codebases de grande porte. O baseline real é medido no seu próprio ambiente, na primeira semana — e é contra ele que o resultado vai ser comparado.</p>
   </div>
 </section>
 
 <!-- ============ POR QUE AITECHUB ============ -->
-<section class="sec-pad soft" id="porque">
+<section class="band band-tint" id="porque">
   <div class="wrap">
-    <div class="eyebrow reveal">Por Que AITECHUB</div>
-    <h2 class="stitle wide reveal">Três tipos de fornecedor disputam essa conversa. Veja onde cada um para.</h2>
+    <div class="section-head">
+      <div class="t-eyebrow reveal">Por que AITECHUB</div>
+      <h2 class="t-display-lg reveal">Três tipos de fornecedor disputam essa conversa. Veja onde cada um para.</h2>
+    </div>
 
     <div class="compare reveal">
       <div class="crow head">
@@ -975,89 +298,73 @@
         <div class="ccell aitechub">AITECHUB</div>
       </div>
       <div class="crow">
-        <div class="ccell rowlabel">Profundidade arquitetural</div>
+        <div class="ccell label">Profundidade arquitetural</div>
         <div class="ccell">Variável</div>
         <div class="ccell">Baixa</div>
         <div class="ccell">Alta</div>
         <div class="ccell aitechub">Alta</div>
       </div>
       <div class="crow">
-        <div class="ccell rowlabel">Fluência regulatória BR</div>
+        <div class="ccell label">Fluência regulatória BR</div>
         <div class="ccell">Média</div>
         <div class="ccell">Nenhuma</div>
         <div class="ccell">Alta</div>
         <div class="ccell aitechub">Alta</div>
       </div>
       <div class="crow">
-        <div class="ccell rowlabel">Cobre greenfield e brownfield</div>
+        <div class="ccell label">Cobre greenfield e brownfield</div>
         <div class="ccell">Parcial</div>
         <div class="ccell">Não</div>
         <div class="ccell">Parcial</div>
         <div class="ccell aitechub">Sim, os dois</div>
       </div>
       <div class="crow">
-        <div class="ccell rowlabel">Foco em transferir capacidade</div>
+        <div class="ccell label">Foco em transferir capacidade</div>
         <div class="ccell">Baixo — gera dependência</div>
         <div class="ccell">Alto, mas genérico</div>
         <div class="ccell">Não se aplica</div>
         <div class="ccell aitechub">Alto e aplicado</div>
       </div>
       <div class="crow">
-        <div class="ccell rowlabel">Velocidade até resultado</div>
+        <div class="ccell label">Velocidade até resultado</div>
         <div class="ccell">Lenta</div>
         <div class="ccell">Rápida, mas rasa</div>
         <div class="ccell">Muito lenta</div>
         <div class="ccell aitechub">90 dias</div>
       </div>
     </div>
-    <p class="compare-foot reveal">A AITECHUB trabalha com poucos clientes por vez, com senioridade real em cada engagement, selecionando continuamente o melhor da engenharia agêntica do mercado e instalando-o como modelo operacional. O resultado é difícil de copiar — e fácil de defender no board.</p>
-  </div>
-</section>
-
-<!-- ============ QUEM SOMOS ============ -->
-<section class="sec-pad dark" id="quem">
-  <div class="wrap">
-    <div class="eyebrow on-dark reveal">Quem Somos</div>
-    <h2 class="stitle wide reveal">27 anos construindo a arquitetura de tecnologia de grandes empresas reguladas.</h2>
-    <div class="who-grid">
-      <div class="who-text reveal">
-        <p>A AITECHUB nasce da combinação rara de três competências que raramente se encontram na mesma pessoa: <b>profundidade em arquitetura corporativa</b>, fluência na regulação brasileira e prática agêntica de ponta.</p>
-        <p>Guilherme Matos foi Head de Arquitetura na Cielo, Diretor de Inovação na V8.TECH — adquirida pela TIM — e passou por Multiplus/LATAM e Claro ao longo de quase três décadas em BFSI e Telco. É mestre em Ciência da Computação pela UNICAMP.</p>
-        <p>Não é uma consultoria que aprendeu IA. É um arquiteto de sistemas críticos que opera engenharia agêntica — e sabe exatamente onde ela quebra em um ambiente regulado.</p>
-      </div>
-      <div class="pullquote reveal">
-        <p>"Fazer um agente codificar é fácil. Fazer um agente codificar em um core bancário, sem quebrar o que está em produção — isso é engenharia. É o problema que escolhemos resolver."</p>
-      </div>
-    </div>
+    <p class="compare-foot reveal">A AITECHUB trabalha com poucos clientes por vez, com seniores em cada engagement, e revisa continuamente o que está funcionando em engenharia agêntica para instalar como modelo operacional. É um arranjo difícil de copiar e fácil de defender diante do board. <a href="sobre.html" class="t-cobalt">Conhecer a história e o fundador →</a></p>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="sec-pad" id="faq">
+<section class="band" id="faq">
   <div class="wrap">
-    <div class="eyebrow reveal">FAQ</div>
-    <h2 class="stitle reveal">Perguntas que todo CIO faz na primeira conversa.</h2>
+    <div class="section-head">
+      <div class="t-eyebrow reveal">FAQ</div>
+      <h2 class="t-display-lg reveal">Perguntas que todo CIO faz na primeira conversa.</h2>
+    </div>
 
     <div class="faq reveal">
       <div class="faq-item">
-        <button class="faq-q">Isso é mais uma ferramenta de IA para a gente comprar?<span class="faq-icon"></span></button>
+        <button class="faq-q">Isso é mais uma ferramenta de IA para a gente comprar?<span class="faq-icon" aria-hidden="true"></span></button>
         <div class="faq-a"><div class="faq-a-inner">Não. A AITECHUB não vende licença de software nem está presa a um framework. Selecionamos as melhores práticas do mercado — skills e fluxos de engenharia, boa parte open-source — e as instalamos como modelo operacional no seu ambiente, customizadas para a sua Arquitetura de Referência. A capacidade fica com o seu time.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Já temos contrato com uma grande consultoria. Onde a AITECHUB se encaixa?<span class="faq-icon"></span></button>
+        <button class="faq-q">Já temos contrato com uma grande consultoria. Onde a AITECHUB se encaixa?<span class="faq-icon" aria-hidden="true"></span></button>
         <div class="faq-a"><div class="faq-a-inner">Em geral, de forma complementar. Grandes consultorias têm escala; a AITECHUB tem profundidade vertical, velocidade e curadoria contínua do que funciona no mercado. É comum atuarmos na definição do modelo operacional e na habilitação dos times, enquanto a execução de larga escala segue com o parceiro de capacity.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Funciona para o nosso legado, ou só para projetos novos?<span class="faq-icon"></span></button>
+        <button class="faq-q">Funciona para o nosso legado, ou só para projetos novos?<span class="faq-icon" aria-hidden="true"></span></button>
         <div class="faq-a"><div class="faq-a-inner">Para os dois. O pilar Brownfield existe exatamente para isso: planejamos o refactoring e a modernização necessários para preparar sistemas legados para o modelo agêntico, endereçando o problema de harnessability. Nada é tocado em produção sem diagnóstico e aprovação.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Quanto tempo até vermos resultado?<span class="faq-icon"></span></button>
+        <button class="faq-q">Quanto tempo até vermos resultado?<span class="faq-icon" aria-hidden="true"></span></button>
         <div class="faq-a"><div class="faq-a-inner">O primeiro resultado mensurável vem em 90 dias: assessment completo, modelo operacional instalado e os primeiros slices executados, com dashboard de métricas comparando o baseline ao estado atual.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Vamos ficar dependentes da AITECHUB?<span class="faq-icon"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">O contrário é o objetivo declarado. Cada engagement é desenhado para transferir capacidade — o time AI Enabler trabalha pareado com o seu squad justamente para que ele ganhe fluência. Ao final, o seu time opera sozinho.</div></div>
+        <button class="faq-q">Vamos ficar dependentes da AITECHUB?<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">O contrário é o objetivo declarado. Cada engagement é desenhado para transferir capacidade — o nosso time AI Enabler trabalha pareado com o seu squad justamente para que ele ganhe fluência. Ao final, o seu time opera sozinho.</div></div>
       </div>
     </div>
   </div>
@@ -1065,52 +372,67 @@
 
 <!-- ============ FINAL CTA ============ -->
 <section class="final-cta" id="contato">
-  <div class="final-mesh"></div>
+  <div class="final-mesh" aria-hidden="true"></div>
   <div class="wrap final-inner">
-    <div class="eyebrow reveal">Próximo passo</div>
-    <h2 class="reveal">O primeiro passo é uma conversa de 45 minutos.</h2>
-    <p class="fc-text reveal">Sem proposta pré-fabricada. Conversamos sobre o domínio que mais trava a sua entrega hoje, e você sai da conversa com uma leitura honesta — viável ou não — de como o novo modelo operacional agêntico se aplica ao seu contexto.</p>
-    <div class="cta-row reveal">
-      <a href="mailto:guilherme@aitechub.com.br" class="btn btn-primary btn-large">Agendar conversa</a>
-      <a href="mailto:guilherme@aitechub.com.br" class="btn-link">Receber o briefing executivo por e-mail</a>
+    <div class="t-eyebrow reveal">Próximo passo</div>
+    <h2 class="t-display-lg reveal">O primeiro passo é uma conversa de 45 minutos.</h2>
+    <p class="reveal">Sem proposta pronta. Conversamos sobre o domínio que mais trava a sua entrega hoje e você sai com uma leitura honesta — viável ou não — de como o modelo operacional agêntico se aplica ao seu caso.</p>
+    <div class="hero-cta reveal">
+      <a href="mailto:guilherme@aitechub.com.br" class="btn btn-cta btn-cta-lg">
+        <span class="btn-cta-dot" aria-hidden="true"></span>
+        Agendar conversa
+      </a>
+      <a href="mailto:guilherme@aitechub.com.br" class="btn-link">Receber o briefing executivo por e-mail →</a>
     </div>
-    <p class="microcopy reveal">Resposta em até um dia útil. Conversas conduzidas diretamente pelo fundador.</p>
+    <p class="hero-microcopy reveal">Resposta em até um dia útil. Conversas conduzidas diretamente pelo fundador.</p>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer>
+<footer class="footer">
   <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <div class="foot-logo"><span class="ai">AI</span>TECHUB</div>
-        <p class="foot-tag">Engenharia agêntica corporativa. Pavimentamos o caminho do novo modelo de desenvolvimento para grandes empresas.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="wm">
+          <img class="mark" src="assets/logo-mark.svg" alt="">
+          <span><span class="ai">AI</span>TECHUB</span>
+        </a>
+        <p class="tagline">Engenharia agêntica corporativa. Instalamos o novo modelo de desenvolvimento em grandes empresas reguladas.</p>
       </div>
-      <div class="foot-col">
-        <div class="ftitle">Navegação</div>
-        <a href="#problema">O problema</a>
-        <a href="#fazemos">O que fazemos</a>
-        <a href="#funciona">Como funciona</a>
-        <a href="#quem">Quem somos</a>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#problema">O problema</a></li>
+          <li><a href="#fazemos">O método</a></li>
+          <li><a href="#funciona">Como funciona</a></li>
+          <li><a href="#resultados">Resultados</a></li>
+          <li><a href="sobre.html">Sobre AITECHUB</a></li>
+        </ul>
       </div>
-      <div class="foot-col">
-        <div class="ftitle">Contato</div>
-        <a href="mailto:guilherme@aitechub.com.br">guilherme@aitechub.com.br</a>
-        <a href="https://www.linkedin.com/in/guimatos-consultor-ti/">linkedin.com/in/guimatos-consultor-ti</a>
-        <p>São Paulo · Brasil</p>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:guilherme@aitechub.com.br">guilherme@aitechub.com.br</a></li>
+          <li><a href="https://www.linkedin.com/in/guimatos-consultor-ti/">LinkedIn</a></li>
+          <li><span class="t-mute">São Paulo · Brasil</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">LGPD</a></li>
+        </ul>
       </div>
     </div>
-    <div class="foot-legal">© 2026 AITECHUB · Política de Privacidade · LGPD</div>
+    <div class="footer-legal">
+      <span>© 2026 AITECHUB · CNPJ a publicar</span>
+      <span>v1.0 · build 2026-05-27</span>
+    </div>
   </div>
 </footer>
 
 <script>
-  // nav scroll state
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
@@ -1135,7 +457,7 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = (Math.min(i % 4, 3) * 0.07) + 's';
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 0.06) + 's';
     io.observe(el);
   });
 </script>
